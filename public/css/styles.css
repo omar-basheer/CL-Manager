@@ -1,0 +1,42 @@
+/* styles.css */
+
+.app{
+    text-align: center;
+}
+
+/* Style the user cards */
+.card {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    width: 40rem;
+    height: 2rem;
+    margin: 0.5rem auto;
+    border: 0.1rem solid rgba(0, 0, 0, 0.233);
+    border-radius: 7px;
+    padding: 1rem;
+    justify-content: space-between;
+  }
+
+  .card:hover{
+    background-color: rgb(231, 238, 245);
+  }
+
+/* Avatar style */
+.avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    margin-right: 2.5rem;
+  }
+
+/* Card buttons style */
+.card-buttons button {
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #0c80a0;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
