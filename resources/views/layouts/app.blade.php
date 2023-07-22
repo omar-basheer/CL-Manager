@@ -3,7 +3,8 @@
 
 <head>
     <title>clmanager</title>
-    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
 </head>
@@ -12,6 +13,9 @@
     <div class="container">
         @yield('content')
     </div>
-</body>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 
+
+</body>
 </html>

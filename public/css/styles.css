@@ -1,11 +1,31 @@
 /* styles.css */
 
+@font-face {
+  font-family: 'YourFontName';
+  src: url('/fonts/Montserrat-Light.ttf') format('tff'),
+  url('/fonts/Montserrat-ExtraLight.ttf') format('tff');
+    /* Add more font formats if available */
+  /* e.g., url('/fonts/your-font-file.ttf') format('truetype') */
+  /* e.g., url('/fonts/your-font-file.svg#YourFontName') format('svg'); */
+  /* Note: Make sure to replace 'YourFontName' and 'your-font-file' with actual values */
+}
+
+body {
+  font-family: 'Montserrat-ExtraLight', sans-serif;
+}
+
+
 .app{
     text-align: center;
 }
 
+.error-message{
+  font-size: small;
+  color: rgb(225, 88, 88);
+  padding-bottom: 1rem;
+}
 /* Style the user cards */
-.card {
+.app .clcard {
     list-style: none;
     display: flex;
     align-items: center;
@@ -16,22 +36,28 @@
     border-radius: 7px;
     padding: 1rem;
     justify-content: space-between;
+    line-height: normal;
+    box-sizing: content-box;
   }
 
-  .card:hover{
+  .clcard p{
+    margin-top:1rem;
+  }
+
+  .clcard:hover{
     background-color: rgb(231, 238, 245);
   }
 
 /* Avatar style */
 .avatar {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 100%;
     margin-right: 2.5rem;
   }
 
 /* Card buttons style */
-.card-buttons button {
+.clcard-buttons button {
     padding: 0.5rem;
     cursor: pointer;
     background-color: #0c80a0;
