@@ -15,3 +15,7 @@ use App\Http\Controllers\ClientController;
 */
 
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+Route::post('/api/clients/store', [ClientController::class, 'store'])->name('clients.store');
+Route::delete('/api/clients/delete/{email}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::get('/api/clients/get/{client}', [ClientController::class, 'show'])->name('clients.show');
+Route::put('/api/clients/update/{email}', [ClientController::class, 'update'])->name('clients.update');

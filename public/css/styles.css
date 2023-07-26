@@ -60,7 +60,17 @@ body {
 .clcard-buttons button {
     padding: 0.5rem;
     cursor: pointer;
-    background-color: #0c80a0;
+    background-color: #146bde;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+
+  #createClientModalButton {
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #146bde;
     font-weight: 700;
     color: white;
     border: none;

@@ -9,11 +9,10 @@ class CreateClientstable extends Migration{
     public function up(){
 
         Schema :: create('clients', function(Blueprint $table){
-            $table->id();
             $table->string('first_name');
             $table->string('middle_name') -> nullable();
             $table->string('last_name');
-            $table->string('email') -> unique();
+            $table->string('email') -> primary();
             $table->string('phone');
             $table->string('company')-> nullable();
             $table->string('website') -> nullable();
