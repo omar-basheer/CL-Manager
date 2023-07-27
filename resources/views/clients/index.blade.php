@@ -101,53 +101,53 @@
                     <div class="form-group">
                         <label for="first_name">First Name</label>
                         <input type="text" class="form-control" id="first_name" name="first_name" required>
-                        <div class="error-message" id="error-first_name"></div>
+                        <div class="error-message" id="editError-first_name"></div>
                     </div>
                     <div class="form-group">
                         <label for="middle_name">Middle Name</label>
                         <input type="text" class="form-control" id="middle_name" name="middle_name">
-                        <div class="error-message" id="error-middle_name"></div>
+                        <div class="error-message" id="editError-middle_name"></div>
                     </div>
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
                         <input type="text" class="form-control" id="last_name" name="last_name" required>
-                        <div class="error-message" id="error-last_name"></div>
+                        <div class="error-message" id="editError-last_name"></div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email" required>
-                        <div class="error-message" id="error-email"></div>
+                        <div class="error-message" id="editError-email"></div>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
-                        <div class="error-message" id="error-phone"></div>
+                        <div class="error-message" id="editError-phone"></div>
                     </div>
                     <div class="form-group">
                         <label for="company">Organization</label>
                         <input type="text" class="form-control" id="company" name="company">
-                        <div class="error-message" id="error-company"></div>
+                        <div class="error-message" id="editError-company"></div>
                     </div>
                     <div class="form-group">
                         <label for="website">Website</label>
                         <input type="text" class="form-control" id="website" name="website">
-                        <div class="error-message" id="error-website"></div>
+                        <div class="error-message" id="editError-website"></div>
                     </div>
                     <div class="form-group">
                         <label for="city">City</label>
                         <input type="text" class="form-control" id="city" name="city" required>
-                        <div class="error-message" id="error-city"></div>
+                        <div class="error-message" id="editError-city"></div>
                     </div>
                     <div class="form-group">
                         <label for="country">Country</label>
                         <input type="text" class="form-control" id="country" name="country" required>
-                        <div class="error-message" id="error-country"></div>
+                        <div class="error-message" id="editError-country"></div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary updateClientButton">Update Client</button>
+                <button type="button" class="btn btn-primary updateClientButton" >Update Client</button>
             </div>
         </div>
     </div>

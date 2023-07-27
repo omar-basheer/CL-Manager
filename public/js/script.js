@@ -107,7 +107,8 @@ $(document).ready(function () {
     editClientButton.click(function(){
         console.log('clicked')
         var email = $(this).data('email');
-        editClientEmail = email;
+        editClientModal.data('client-email', email); 
+        // editClientEmail = email;
         $.ajax({
             type: 'GET',
             url: '/api/clients/get/' + email,
@@ -134,35 +135,15 @@ $(document).ready(function () {
 
     updateClientButton.click(function () {
         var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get the CSRF token from the meta tag
-        var formData = new FormData(document.getElementById('editClientForm')); 
-        var email = editClientEmail
+        var email = editClientModal.data('client-email'); 
         console.log(email);
-        // Append the email to the FormData as a hidden field
-        formData.append('email', email);
-        console.log("Form Data:");
+        var formData = new FormData(document.getElementById('editClientForm')); 
         for (var pair of formData.entries()) {
             console.log(pair[0] + ": " + pair[1]);
         }
-        
-        // Iterate through the form inputs and append their values to the FormData
-        $('#editClientForm :input').each(function() {
-            var input = $(this);
-            var fieldName = input.attr('name');
-            var fieldValue = input.val();
-
-            // Append the field name and value to the FormData
-            formData.append(fieldName, fieldValue);
-        });
-
-        console.log("Form Data:");
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-        }
-
-        editClientEmail = '';
 
         $.ajax({
-            type: 'PUT',
+            type: 'PATCH',
             url: '/api/clients/update/' + email,
             data: formData,
             contentType: false,
@@ -176,16 +157,16 @@ $(document).ready(function () {
                 editClientModal.modal('hide');
                 window.location.reload();
             },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-                console.error(error);
+            error: function (error) {
+                console.log(error.status)
                 if (error.status === 422) {
                     var errors = error.responseJSON.errors;
                     var errorMessage = '* ';
 
                     for (var field in errors) {
                         errorMessage += errors[field][0] + '\n';
-                        $('#error-' + field).text(errorMessage);
+                        console.log(errorMessage)
+                        $('#editError-' + field).text(errorMessage);
                         errorMessage = '* ';
                     }
                 } else {
