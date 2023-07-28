@@ -10,12 +10,11 @@
 </head>
 
 <body>
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 
 
 </body>
+
 </html>

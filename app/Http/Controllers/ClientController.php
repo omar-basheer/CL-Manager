@@ -23,7 +23,6 @@ class ClientController extends Controller
         Log::info('validator', [$validator]);
         if ($validator->fails()) {
             Log::info('Validation failed', ['errors' => $validator->errors()]);
-            // return redirect()->back()->withErrors($validator)->withInput();
             return response()->json(['errors' => $validator->errors()], 422);
         };
 
@@ -40,32 +39,54 @@ class ClientController extends Controller
         // Find the client using the email
         $client = Client::where('email', $email)->first();
         Log::info('client', [$client]);
-    
+
         if (!$client) {
             return response()->json(['message' => 'Client not found'], 404);
         }
-    
+
         $client->delete();
         return response()->json(['message' => 'Client deleted successfully'], 200);
     }
 
 
-    public function show(Client $client)
+    public function show($data)
     {
-        Log::info('client', [$client]);
+        // return $data;
+        // Log::info('client', [$client]);
+        $client = Client::where("email", $data)->first();  //fetch data which matches email
         return response()->json($client, 200);
+        // return response()->json(["client" => $client] );
     }
 
-    public function update(Request $request, Client $client)
+    public function update(Request $request,  $email,)
     {
-        // Validate the incoming request data
-        $validator = Validator::make($request->all(), Client::$rules);
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-        // Update the client with the new data
-        $client->update($request->all());
+        // Define the specific validation rules for updating a client
+        $updateRules = [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'company' => 'nullable|string|max:255',
+            'website' => 'nullable|string|max:255',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+        ];
 
-        return response()->json(['message' => 'Client updated successfully'], 200);
+        // Validate the incoming request data
+        $validator = Validator::make($request->all(), $updateRules);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        // Find the client by email
+        $client = Client::where('email', $email)->first();
+
+        // Update the client with the new data
+        try {
+            $client->update($request->all());
+            return response()->json(['message' => 'Client updated successfully'], 200);
+
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }

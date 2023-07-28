@@ -41,9 +41,6 @@ $(document).ready(function () {
     saveClientButton.click(function () {
         clearErrorMessages();
         var formData = new FormData($('#createClientForm')[0]);
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-        }
 
         // Make an AJAX POST request to the store route
         $.ajax({
@@ -53,7 +50,6 @@ $(document).ready(function () {
             contentType: false, // Set to false to prevent jQuery from automatically setting the Content-Type header
             processData: false, // Set to false to prevent jQuery from automatically processing the data
             success: function (response) {
-                console.log('post success');
                 // If there are no errors, close the modal and display a success message
                 alert('Client created successfully!');
                 window.location.reload();
@@ -105,18 +101,17 @@ $(document).ready(function () {
     
 
     editClientButton.click(function(){
-        console.log('clicked')
         var email = $(this).data('email');
         editClientModal.data('client-email', email); 
-        // editClientEmail = email;
+
         $.ajax({
             type: 'GET',
-            url: '/api/clients/get/' + email,
+            url: `/clients/${email}`,
             success: function(data){
+                console.log(data)
                 $('#editClientForm #first_name').val(data.first_name);
                 $('#editClientForm #middle_name').val(data.middle_name);
                 $('#editClientForm #last_name').val(data.last_name);
-                $('#editClientForm #email').val(data.email);
                 $('#editClientForm #phone').val(data.phone);
                 $('#editClientForm #company').val(data.company);
                 $('#editClientForm #website').val(data.website);
@@ -134,23 +129,16 @@ $(document).ready(function () {
 
 
     updateClientButton.click(function () {
-        var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get the CSRF token from the meta tag
         var email = editClientModal.data('client-email'); 
         console.log(email);
         var formData = new FormData(document.getElementById('editClientForm')); 
-        for (var pair of formData.entries()) {
-            console.log(pair[0] + ": " + pair[1]);
-        }
 
         $.ajax({
-            type: 'PATCH',
-            url: '/api/clients/update/' + email,
+            type: 'POST',
+            url: `/clients/update/${email}`,
             data: formData,
             contentType: false,
             processData: false,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-            },
             success: function (response) {
                 console.log(response); 
                 alert('Client updated successfully!');
@@ -159,7 +147,7 @@ $(document).ready(function () {
             },
             error: function (error) {
                 console.log(error.status)
-                if (error.status === 422) {
+                if (error.status === 400) {
                     var errors = error.responseJSON.errors;
                     var errorMessage = '* ';
 

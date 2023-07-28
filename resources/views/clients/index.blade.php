@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required>
                         <div class="error-message" id="error-email"></div>
                     </div>
                     <div class="form-group">
@@ -54,12 +54,12 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password (must be at least 6 characters)</label>
-                        <input type="text" class="form-control" id="password" name="password" required>
+                        <input type="password" class="form-control" id="password" name="password" required>
                         <div class="error-message" id="error-password"></div>
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password</label>
-                        <input type="text" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         <div class="error-message" id="error-password_confirmation"></div>
                     </div>
                     <div class="form-group">
@@ -95,7 +95,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form id="editClientForm">
+                <form id="editClientForm">
                     @csrf
                     <!-- Your form fields for creating a new client go here -->
                     <div class="form-group">
@@ -113,11 +113,11 @@
                         <input type="text" class="form-control" id="last_name" name="last_name" required>
                         <div class="error-message" id="editError-last_name"></div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email" required>
                         <div class="error-message" id="editError-email"></div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="phone">Phone</label>
                         <input type="text" class="form-control" id="phone" name="phone" required>
@@ -147,36 +147,49 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary updateClientButton" >Update Client</button>
+                <button type="button" class="btn btn-primary updateClientButton">Update Client</button>
             </div>
         </div>
     </div>
 </div>
 
 
-    <div class="app">
-        <h2>CL Software</h2>
-        <div>
-            <button id="createClientButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="createClientForm">
-                New Client
-            </button>
-
-            @foreach ($clients as $client)
-            <div class="clcard">
-                <div class="clcard-header">
-                    <img class="avatar" src="{{ $client->avatar }}" alt="Avatar" width="100" height="100">
-                </div>
-                <p> {{ $client->first_name }} {{ $client->last_name }}</p>
-                <p> {{ $client->email }}</p>
-                <p>{{ $client->phone }}</p>
-                <div class="clcard-buttons">
-                    <button class="editClientButton" data-email="{{$client->email}}">Edit</button>
-                    <button class="deleteClientButton" data-email="{{$client->email}}">Delete</button>
-                </div>
+<div class="app">
+    <!-- <h2>CL Software</h2> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand mynav-brand" href="#">Client Soft</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav mynav-nav">
+                <a class="nav-item nav-link  mynav-nav" href="#">Home </a>
+                <a class="nav-item nav-link mynav-nav" href="#">People</a>
             </div>
-            @endforeach
         </div>
+    </nav>
+    <div>
+        <button id="createClientButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="createClientForm">
+            New Client
+        </button>
+
+        <div class="side-menu-container">
+            <!-- Place your side menu content here -->
+        </div>
+
+        @foreach ($clients as $client)
+        <div class="clcard">
+            <div class="clcard-header">
+                <img class="avatar" src="{{ $client->avatar }}" alt="Avatar" width="100" height="100">
+            </div>
+            <p> {{ $client->first_name }} {{ $client->last_name }}</p>
+            <p> {{ $client->email }}</p>
+            <p>{{ $client->phone }}</p>
+            <div class="clcard-buttons">
+                <button class="editClientButton" data-email="{{$client->email}}">Edit</button>
+                <button class="deleteClientButton" data-email="{{$client->email}}">Delete</button>
+            </div>
+        </div>
+        @endforeach
     </div>
+</div>
 
 
-    @endsection
+@endsection

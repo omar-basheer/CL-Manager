@@ -10,13 +10,38 @@
   /* Note: Make sure to replace 'YourFontName' and 'your-font-file' with actual values */
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+}
+
 body {
-  font-family: 'Montserrat-ExtraLight', sans-serif;
+  background-color: rgb(255, 255, 255);
 }
 
 
 .app{
     text-align: center;
+}
+
+.mynav-brand{
+  padding-left: 4rem;
+  height: 3rem;
+  color: rgb(167, 167, 167);
+}
+
+.mynav-nav{
+  height: 3rem;
+  color: rgb(167, 167, 167);
+}
+
+.side-menu-container{
+
 }
 
 .error-message{
@@ -76,3 +101,5 @@ body {
     border: none;
     border-radius: 5px;
   }
+
+
